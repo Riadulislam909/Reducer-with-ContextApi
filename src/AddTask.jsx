@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { TasksContext, TasksDispatchContext } from "./contexts/TasksContext";
+import { getNextId } from "./utils/getNextId";
 
-const AddTask = ({ onAdd }) => {
+const AddTask = () => {
   const [text, setText] = useState("");
+  const dispatch = useContext(TasksDispatchContext);
+  const tasks = useContext(TasksContext);
   function handleChange(e) {
     setText(e.target.value);
   }
@@ -11,7 +15,11 @@ const AddTask = ({ onAdd }) => {
       <input type="text" value={text} onChange={handleChange} />
       <button
         onClick={() => {
-          onAdd(text);
+          dispatch({
+            type: "added",
+            text: text,
+            id: getNextId(tasks),
+          });
           setText("");
         }}
       >

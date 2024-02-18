@@ -9,21 +9,6 @@ import taskReducer from "./reducers/taskReducer";
 function App() {
   const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
-  const getNextId = (data) => {
-    const maxId = data.reduce(
-      (prev, curv) => (prev && prev.id > curv.id ? prev.id : curv.id),
-      0
-    );
-    return maxId + 1;
-  };
-
-  function handleAddTask(text) {
-    dispatch({
-      type: "added",
-      text: text,
-      id: getNextId(tasks),
-    });
-  }
   function handleChangeTask(task) {
     dispatch({
       type: "changed",
@@ -39,9 +24,10 @@ function App() {
 
   return (
     <TasksContext.Provider value={tasks}>
+      {/* initializing the provider with value */}
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Task Manager</h1>
-        <AddTask onAdd={handleAddTask} />
+        <AddTask />
         <TaskList
           tasks={tasks}
           onChangeTask={handleChangeTask}
