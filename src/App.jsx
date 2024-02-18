@@ -28,11 +28,7 @@ function App() {
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Task Manager</h1>
         <AddTask />
-        <TaskList
-          tasks={tasks}
-          onChangeTask={handleChangeTask}
-          onDelete={handleDelete}
-        />
+        <TaskList />
       </TasksDispatchContext.Provider>
     </TasksContext.Provider>
   );
