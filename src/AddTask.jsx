@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
-import { TasksContext, TasksDispatchContext } from "./contexts/TasksContext";
+import { useState } from "react";
+import { useTaskDispatch, useTasks } from "./contexts/TasksContext";
 import { getNextId } from "./utils/getNextId";
 
 const AddTask = () => {
   const [text, setText] = useState("");
-  const dispatch = useContext(TasksDispatchContext);
-  const tasks = useContext(TasksContext);
+  const dispatch = useTaskDispatch();
+  const tasks = useTasks();
   function handleChange(e) {
     setText(e.target.value);
   }

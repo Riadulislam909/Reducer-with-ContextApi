@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useState } from "react";
-import { TasksDispatchContext } from "./contexts/TasksContext";
+import { useState } from "react";
+import { useTaskDispatch } from "./contexts/TasksContext";
 
 const Task = ({ task }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const dispatch = useContext(TasksDispatchContext);
+  const dispatch = useTaskDispatch();
   let textContent;
   if (isEdit) {
     textContent = (

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { initialTasks } from "../data.js";
 import taskReducer from "../reducers/taskReducer.js";
 
@@ -16,4 +16,12 @@ export default function TaskContextProvider({ children }) {
       </TasksDispatchContext.Provider>
     </TasksContext.Provider>
   );
+}
+
+export function useTasks() {
+  return useContext(TasksContext);
+}
+
+export function useTaskDispatch() {
+  return useContext(TasksDispatchContext);
 }
